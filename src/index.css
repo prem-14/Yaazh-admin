@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 *,
 *::before,
@@ -24,26 +24,54 @@ html {
   color: var(--primaryMain);
 }
 
+.textSecondary {
+  color: var(--textSecondary);
+}
+
+.flex {
+  display: flex;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.p-10 {
+  padding: 1rem;
+}
+
+.ml-5 {
+  margin-left: 0.5rem;
+}
+
+.ml-10 {
+  margin-left: 1rem;
+}
+
 /******** Scrollbar *************/
-body::-webkit-scrollbar {
-  width: 8px;
+::-webkit-scrollbar {
+  width: 6px;
 }
 
 /* Track */
-body::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background: #dfe6e9;
 }
 
-body::-webkit-scrollbar-track:hover {
+::-webkit-scrollbar-track:hover {
   background: #d3f2f1;
 }
 
 /* Handle */
-body::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background: #a8b6b8;
   border-radius: 10px;
 }
 
-body::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
   background: #9ba7a9;
 }

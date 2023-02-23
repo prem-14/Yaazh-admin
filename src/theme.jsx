@@ -5,6 +5,7 @@ const themes = (mode) => {
       // palette values for light mode
       primary: {
         main: '#23B7C6',
+        hover: 'rgba(29, 161, 242, 0.1)',
         contrastText: '#fff',
       },
       secondary: {
@@ -13,17 +14,22 @@ const themes = (mode) => {
       },
       background: {
         default: 'rgb(255, 255, 255)',
+        alt: '#f8f8f8',
       },
       text: {
         primary: 'rgb(15, 20, 25)',
         secondary: '#5b7083',
+      },
+      common: {
+        shadow: '#e0e0e0',
       },
     }
   } else if (mode === 'dark') {
     themePalette = {
       // palette values for dark mode
       primary: {
-        main: '#23B7C6',
+        main: '#0D80D8',
+        hover: 'rgba(29, 161, 242, 0.1)',
         contrastText: '#fff',
       },
       secondary: {
@@ -32,10 +38,14 @@ const themes = (mode) => {
       },
       background: {
         default: 'rgb(21, 32, 43)',
+        alt: '#1a2836',
       },
       text: {
         primary: 'rgb(255, 255, 255)',
         secondary: '#8899a6',
+      },
+      common: {
+        shadow: '#224059',
       },
     }
   }
@@ -72,6 +82,14 @@ export const muiThemeSettings = (mode) => {
       },
       button: {
         fontSize: '1.2rem',
+      },
+    },
+    breakpoints: {
+      values: {
+        mobile: 0,
+        tablet: 640,
+        laptop: 1024,
+        desktop: 1200,
       },
     },
   }

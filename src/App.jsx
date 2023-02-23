@@ -2,10 +2,9 @@ import { useMemo, useState } from 'react'
 import { muiThemeSettings } from './theme'
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import { createTheme } from '@mui/material/styles'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-import SampleButton from '@/components/SampleButton'
-import SampleText from '@/components/SampleText'
-import SampleInput from '@/components/SampleInput'
+import Dashboard from './views/Dashboard'
 
 function App() {
   const [mode, setMode] = useState('dark')
@@ -14,11 +13,14 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <SampleButton mode={mode} setMode={setMode} />
-      <br />
-      <SampleInput />
-      <br />
-      <SampleText />
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path='*'
+            element={<Dashboard mode={mode} setMode={setMode} />}
+          />
+        </Routes>
+      </BrowserRouter>
     </ThemeProvider>
   )
 }

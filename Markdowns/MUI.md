@@ -2,11 +2,44 @@
 
 ### Apply styles
 
-**There are 3 possible ways to generate and apply styles in MUI**
+There are 3 possible ways to generate and apply styles in MUI
 
 https://mui.com/system/styles/basics/#styled-components-api
 
 The ampersand (&) can be used to refer back to the main component.
+
+#### Some Other examples of applying styles
+
+https://mui.com/system/styled/#api
+
+###### Example 1: We can use Component props to add condition
+
+```js
+const PermanentDrawer = styled(MuiDrawer, {
+  shouldForwardProp: (prop) => prop !== 'open',
+})(({ theme, open }) => ({
+  width: drawerWidth,
+  flexShrink: 0,
+  ...(open && {
+    '& .MuiDrawer-paper': {
+      backgroundColor: theme.palette.background.default,
+    },
+  }),
+}))
+
+<PermanentDrawer open={true}></PermanentDrawer>
+```
+
+https://stackoverflow.com/questions/68814908/can-you-pass-custom-props-to-material-ui-v5-styled-components
+
+###### Example 2:
+
+```js
+<AppBar
+  position='fixed'
+  sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+></AppBar>
+```
 
 ---
 
@@ -69,7 +102,7 @@ const theme = createTheme({
 
 ---
 
-### <CssBaseline />
+### CssBaseline
 
 CssBaseline is a component in Material-UI that provides a simple base-line stylesheet that helps to normalize and apply some common styles across different browsers.
 

@@ -1,0 +1,40 @@
+{
+  "products": {
+    "data": [
+      {
+        "id": 1,
+        "name": "Myra"
+      },
+      {
+        "name": "Elsie Price",
+        "id": 3
+      },
+      {
+        "name": "Harold Strosin",
+        "id": 4
+      },
+      {
+        "name": "Guadalupe Crist",
+        "id": 5
+      },
+      {
+        "name": "Gene Roob II",
+        "id": 6
+      },
+      {
+        "name": "Gail Hoppe PhD",
+        "id": 7
+      },
+      {
+        "name": "Nora Renner",
+        "id": 8
+      },
+      {
+        "name": "Lyle Wiza",
+        "id": 9
+      }
+    ],
+    "status": "success",
+    "message": "Data retrieved successfully"
+  }
+}

@@ -1,11 +1,42 @@
 import Layout from '@/components/Layout'
 import SampleButton from '@/components/SampleButton'
-import React from 'react'
+import { useThunk } from '@/hooks/useThunk'
+import { getAllProducts } from '@/store/thunk/product'
+import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 
 const Dashboard = ({ mode, setMode }) => {
+  const [fetchAllProducts, isLoadingProducts, isErrorProducts] =
+    useThunk(getAllProducts)
+  const { data } = useSelector((state) => state.product)
+
+  useEffect(() => {
+    const promise = fetchAllProducts()
+
+    return () => {
+      promise.abort()
+    }
+  }, [])
+
+  // useEffect(() => {
+  //   console.log(
+  //     'products',
+  //     products,
+  //     getAllProducts.fulfilled().type,
+  //     productType === getAllProducts.fulfilled().type // product/getAllProducts/fulfilled
+  //   )
+  // }, [products])
+
   return (
     <Layout>
-      <SampleButton mode={mode} setMode={setMode} />
+      {isLoadingProducts ? (
+        'loading....'
+      ) : (
+        <>
+          <SampleButton mode={mode} setMode={setMode} />
+          {JSON.stringify(data)}
+        </>
+      )}
     </Layout>
   )
 }

@@ -5,6 +5,8 @@ import { createTheme } from '@mui/material/styles'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import Dashboard from './views/Dashboard'
+import AlerNotification from './components/AlertNotification'
+import Product from './views/Product'
 
 function App() {
   const [mode, setMode] = useState('dark')
@@ -13,8 +15,10 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      <AlerNotification />
       <BrowserRouter>
         <Routes>
+          <Route path='products' element={<Product />} />
           <Route
             path='*'
             element={<Dashboard mode={mode} setMode={setMode} />}

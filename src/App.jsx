@@ -18,11 +18,11 @@ function App() {
       <AlerNotification />
       <BrowserRouter>
         <Routes>
-          <Route path='products' element={<Product />} />
           <Route
-            path='*'
-            element={<Dashboard mode={mode} setMode={setMode} />}
+            path='products'
+            element={<Product mode={mode} setMode={setMode} />}
           />
+          <Route path='*' element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

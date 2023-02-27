@@ -100,7 +100,7 @@ export default function Navlist() {
                       ? 'true'
                       : 'false'
                   }
-                  expandIcon={<ExpandMoreIcon fontSize='large' />}
+                  expandIcon={<ExpandMoreIcon />}
                   aria-controls={`panel${index}bh-content`}
                   id={`panel${index}bh-header`}
                 >

@@ -92,7 +92,7 @@ export default function Layout(props) {
               }}
             >
               <IconButton onClick={() => setOpen(true)}>
-                <MenuIcon fontSize='large' />
+                <MenuIcon />
               </IconButton>
             </div>
             {props.children}
@@ -104,7 +104,7 @@ export default function Layout(props) {
               <Box sx={{ width: `calc(100vw - 50px)` }}>
                 <div style={{ textAlign: 'end', padding: '0.5rem' }}>
                   <IconButton onClick={() => setOpen(false)}>
-                    <ChevronLeftIcon fontSize='large' />
+                    <ChevronLeftIcon />
                   </IconButton>
                 </div>
                 <Divider />
@@ -119,9 +119,9 @@ export default function Layout(props) {
                 {open ? (
                   <IconButton onClick={() => setOpen(false)}>
                     {theme.direction === 'rtl' ? (
-                      <ChevronRightIcon fontSize='large' />
+                      <ChevronRightIcon />
                     ) : (
-                      <ChevronLeftIcon fontSize='large' />
+                      <ChevronLeftIcon />
                     )}
                   </IconButton>
                 ) : (
@@ -131,7 +131,7 @@ export default function Layout(props) {
                     onClick={() => setOpen(true)}
                     edge='start'
                   >
-                    <MenuIcon fontSize='large' />
+                    <MenuIcon />
                   </IconButton>
                 )}
               </DrawerHeader>

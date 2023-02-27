@@ -36,6 +36,10 @@ html {
   justify-content: space-between;
 }
 
+.justify-end {
+  justify-content: flex-end;
+}
+
 .align-center {
   align-items: center;
 }
@@ -46,6 +50,14 @@ html {
 
 .ml-5 {
   margin-left: 0.5rem;
+}
+
+.mt-5 {
+  margin-top: 0.5rem;
+}
+
+.mt-10 {
+  margin-top: 1rem;
 }
 
 .ml-10 {

@@ -15,6 +15,7 @@ const themes = (mode) => {
       background: {
         default: 'rgb(255, 255, 255)',
         alt: '#f8f8f8',
+        variation: '#dfe2e4',
       },
       text: {
         primary: 'rgb(15, 20, 25)',
@@ -39,6 +40,7 @@ const themes = (mode) => {
       background: {
         default: 'rgb(21, 32, 43)',
         alt: '#1a2836',
+        variation: '#25384b',
       },
       text: {
         primary: 'rgb(255, 255, 255)',
@@ -82,6 +84,29 @@ export const muiThemeSettings = (mode) => {
       },
       button: {
         fontSize: '1.2rem',
+      },
+    },
+    components: {
+      MuiTooltip: {
+        styleOverrides: {
+          tooltip: {
+            fontSize: '1.3rem',
+          },
+        },
+      },
+      MuiSvgIcon: {
+        styleOverrides: {
+          fontSizeMedium: {
+            fontSize: '2.2rem',
+          },
+        },
+      },
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            borderRadius: '6px',
+          },
+        },
       },
     },
     breakpoints: {

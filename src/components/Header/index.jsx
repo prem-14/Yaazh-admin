@@ -5,16 +5,7 @@ import YaazhLogo from '@/assets/img/logo.png'
 import { DarkMode, LightMode, Notifications } from '@mui/icons-material'
 import Avatar from '../Avatar'
 import CustomPopover from '../PopOver'
-
-const CustomAppBar = styled(AppBar)(({ theme }) => ({
-  backgroundColor: theme.palette.background.alt,
-  position: 'unset',
-  backgroundImage: 'none',
-  zIndex: theme.zIndex.drawer + 1,
-  boxShadow: `0 5px 15px ${theme.palette.common.shadow}`,
-  color: theme.palette.text.primary,
-  transition: 'none',
-}))
+import { CustomAppBar } from '../StyledComponents'
 
 const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null)
@@ -29,12 +20,12 @@ const Header = () => {
         <div className='flex align-center'>
           <div>
             <IconButton>
-              <DarkMode fontSize='large' color='secondary' />
+              <DarkMode color='secondary' />
             </IconButton>
           </div>
           <div className='ml-10'>
             <IconButton>
-              <Notifications fontSize='large' color='secondary' />
+              <Notifications color='secondary' />
             </IconButton>
           </div>
           <div className='ml-10'>

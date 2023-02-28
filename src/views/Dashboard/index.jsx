@@ -13,6 +13,8 @@ import DashboardManage from './DashboardManage'
 import { Button } from '@mui/material'
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined'
 import CircularProgress from '@mui/material/CircularProgress'
+import CustomSearch from '@/components/CustomSearch'
+import SampleInput from '@/components/SampleInput'
 
 const Dashboard = () => {
   const [actionStatus, setActionStatus] = useState(false)
@@ -31,6 +33,18 @@ const Dashboard = () => {
       setManage({ popup, status: 'new', id: 0 })
     }
   }
+
+  console.count()
+
+  //   const debouncedValidate = useMemo(
+  //     () => debounce(formik.validateForm, 500),
+  //     [formik.validateForm],
+  // );
+
+  // useEffect(() => {
+  //     console.log('calling deboucedValidate');
+  //     debouncedValidate(formik.values);
+  // }, [formik.values]);
 
   const onClickSingle = (row, actionType) => {
     toggleFullScreenPopup(true, 'edit', row.id, row)
@@ -57,6 +71,7 @@ const Dashboard = () => {
 
   const formik = useFormik({
     initialValues: formikInitialValues,
+    validateOnChange: false,
     onSubmit: (values) => {
       // setIsLoading(true)
       console.log(values)
@@ -110,6 +125,44 @@ const Dashboard = () => {
     },
   ]
 
+  const searchInfo = [
+    {
+      label: 'Product name',
+      placeholder: 'Enter product name',
+      class: 'col-12 col-md-4 col-sm-6',
+      type: 'text',
+      name: 'name',
+    },
+    {
+      label: 'Product name',
+      placeholder: 'Enter product name',
+      class: 'col-12 col-md-4 col-sm-6',
+      type: 'text',
+      name: 'name',
+    },
+    {
+      label: 'Product name',
+      placeholder: 'Enter product name',
+      class: 'col-12 col-md-4 col-sm-6',
+      type: 'text',
+      name: 'name',
+    },
+    {
+      label: 'Product name',
+      placeholder: 'Enter product name',
+      class: 'col-12 col-md-4 col-sm-6',
+      type: 'text',
+      name: 'name',
+    },
+    {
+      label: 'Product name',
+      placeholder: 'Enter product name',
+      class: 'col-12 col-md-4 col-sm-6',
+      type: 'text',
+      name: 'name',
+    },
+  ]
+
   const formikSelection = useFormik({
     initialValues: {
       action: '',
@@ -150,6 +203,8 @@ const Dashboard = () => {
 
   return (
     <Layout>
+      <CustomSearch searchInfo={searchInfo} formik={formik} />
+
       <Button
         variant='outlined'
         onClick={() => toggleFullScreenPopup(true, 'new', 0)}

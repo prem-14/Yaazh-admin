@@ -50,7 +50,7 @@ export default function FullScreenDialog(props) {
             </Typography>
           </Toolbar>
         </CustomAppBar>
-        {props.children}
+        <div className='p-20'>{props.children}</div>
       </CustomDialog>
     </div>
   )

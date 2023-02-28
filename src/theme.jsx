@@ -16,6 +16,7 @@ const themes = (mode) => {
         default: 'rgb(255, 255, 255)',
         alt: '#f8f8f8',
         variation: '#dfe2e4',
+        dark: '#dfe2e4',
       },
       text: {
         primary: 'rgb(15, 20, 25)',
@@ -41,6 +42,7 @@ const themes = (mode) => {
         default: 'rgb(21, 32, 43)',
         alt: '#1a2836',
         variation: '#25384b',
+        dark: '#0b151e',
       },
       text: {
         primary: 'rgb(255, 255, 255)',
@@ -105,6 +107,14 @@ export const muiThemeSettings = (mode) => {
         styleOverrides: {
           root: {
             borderRadius: '6px',
+          },
+        },
+      },
+      MuiTextField: {
+        styleOverrides: {
+          root: {
+            margin: '10px',
+            width: '100%',
           },
         },
       },

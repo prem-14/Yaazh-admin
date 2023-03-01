@@ -14,7 +14,6 @@ import { Button } from '@mui/material'
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined'
 import CircularProgress from '@mui/material/CircularProgress'
 import CustomSearch from '@/components/CustomSearch'
-import SampleInput from '@/components/SampleInput'
 
 const Dashboard = () => {
   const [actionStatus, setActionStatus] = useState(false)
@@ -126,13 +125,6 @@ const Dashboard = () => {
   ]
 
   const searchInfo = [
-    {
-      label: 'Product name',
-      placeholder: 'Enter product name',
-      class: 'col-12 col-md-4 col-sm-6',
-      type: 'text',
-      name: 'name',
-    },
     {
       label: 'Product name',
       placeholder: 'Enter product name',

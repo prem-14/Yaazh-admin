@@ -1,5 +1,4 @@
 import { IconButton, Tooltip } from '@mui/material'
-import { GridActionsCellItem } from '@mui/x-data-grid'
 
 export default function CustomColumns(tableValues) {
   const columns = tableValues.map((data, i) => {

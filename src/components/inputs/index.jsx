@@ -1,4 +1,6 @@
+import './index.css'
 import CustomInput from './CustomInput'
+import CustomEditor from './CustomEditor'
 
 const checkArrayHelperText = (formik, data) => {
   if (data.name.includes('[')) {
@@ -65,9 +67,9 @@ function inputData(formik, formikArray) {
   let data = formikArray.map((data, index) => (
     <>
       <div key={index} className={data.class}>
-        {data.type === 'text' ||
-        data.type === 'password' ||
-        data.type === 'color' ? (
+        {['text', 'password', 'color', 'date', 'time', 'datetime'].includes(
+          data.type
+        ) ? (
           <>
             <CustomInput
               id={data.id}
@@ -89,6 +91,8 @@ function inputData(formik, formikArray) {
               size={data.size}
               startAdornment={data.startAdornment}
               endAdornment={data.endAdornment}
+              min={data.min}
+              max={data.max}
               error={errorCheck(data, formik)}
               helperText={
                 helperText(data, formik)
@@ -100,6 +104,10 @@ function inputData(formik, formikArray) {
               tooltiptitle={data.tooltiptitle}
               readonly={data.readonly}
             />
+          </>
+        ) : data.type === 'editor' ? (
+          <>
+            <CustomEditor formik={formik} data={data} />
           </>
         ) : null}
       </div>

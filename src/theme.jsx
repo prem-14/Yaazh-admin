@@ -16,7 +16,7 @@ const themes = (mode) => {
         default: 'rgb(255, 255, 255)',
         alt: '#f8f8f8',
         variation: '#dfe2e4',
-        dark: '#dfe2e4',
+        dark: '#efefef',
       },
       text: {
         primary: 'rgb(15, 20, 25)',
@@ -42,7 +42,7 @@ const themes = (mode) => {
         default: 'rgb(21, 32, 43)',
         alt: '#1a2836',
         variation: '#25384b',
-        dark: '#0b151e',
+        dark: '#0f1b26',
       },
       text: {
         primary: 'rgb(255, 255, 255)',

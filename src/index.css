@@ -346,3 +346,12 @@ html {
     width: 100%;
   }
 }
+
+/**************** input type (date, time, datetime-local, ...) picker indicator style *************/
+
+::-webkit-calendar-picker-indicator {
+  background-color: var(--textSecondary);
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 3px;
+}

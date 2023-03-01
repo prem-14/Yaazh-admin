@@ -14,10 +14,14 @@ function CustomInput(props) {
           startAdornment: props.startAdornment,
           endAdornment: props.endAdornment,
           readOnly: props.readonly,
+          inputProps: {
+            min: props.min,
+            max: props.max,
+          },
         }}
         id={props.id}
         label={props.label}
-        type={props.type}
+        type={props.type === 'datetime' ? 'datetime-local' : props.type}
         size={props.size}
         disabled={props.disabled}
         variant={props.variant || 'outlined'}

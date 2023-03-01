@@ -137,6 +137,9 @@ export default function DataGridDemo(props) {
           columns={CustomColumns(tableValues)}
           // columns={columns}
           autoHeight={tableData.length > 5 ? false : true}
+          rowHeight={
+            tableValues.find((d) => d.type === 'imagewithurl') ? 70 : 50
+          }
           checkboxSelection
           components={{
             Toolbar: CustomToolbar,

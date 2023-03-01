@@ -49,6 +49,28 @@ const DashboardManage = (props) => {
       label: 'Badge color',
       class: 'col-12 col-sm-6',
     },
+    {
+      type: 'editor',
+      name: 'answer',
+      label: 'Answer',
+      class: 'col-12',
+    },
+    {
+      type: 'date',
+      name: 'date',
+      label: 'Date',
+      class: 'col-12 col-sm-4',
+      min: '2018-01-01',
+      max: '2018-12-31',
+    },
+    {
+      type: 'datetime',
+      name: 'datetime',
+      label: 'DateTime',
+      class: 'col-12 col-sm-4',
+      min: '2018-06-07T00:00',
+      max: '2018-06-14T00:00',
+    },
   ]
 
   return (

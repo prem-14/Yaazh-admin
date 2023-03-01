@@ -113,7 +113,14 @@ export default function Layout(props) {
             </TemporaryDrawer>
           </div>
         ) : (
-          <Box sx={{ display: 'flex' }}>
+          <Box
+            sx={{
+              display: 'flex',
+              position: 'relative',
+              height: 'auto',
+              minHeight: '100vh',
+            }}
+          >
             <PermanentDrawer variant='permanent' open={open}>
               <DrawerHeader>
                 {open ? (

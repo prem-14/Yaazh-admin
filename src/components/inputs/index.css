@@ -1,0 +1,42 @@
+.jodit-react-container {
+  margin-left: 1rem;
+}
+
+.jodit-icon,
+.jodit-toolbar-button__trigger > svg {
+  fill: var(--textSecondary) !important;
+}
+
+.jodit-toolbar__box,
+.jodit-status-bar {
+  background-color: var(--backgroundDark) !important;
+}
+
+.jodit-workplace {
+  background-color: var(--backgroundDefault) !important;
+}
+
+.jodit-dialog__panel {
+  color: black !important;
+}
+
+.jodit-ui-button__text {
+  color: var(--textPrimary) !important;
+}
+
+.jodit-popup__content {
+  background-color: var(--backgroundAlt) !important;
+}
+
+.jodit-workplace {
+  max-height: 200px !important;
+}
+
+.jodit-toolbar-button__button[aria-pressed='true'] {
+  background-color: #c2c7d5 !important;
+}
+
+.jodit-react-container {
+  width: 100% !important;
+  margin: 10px;
+}

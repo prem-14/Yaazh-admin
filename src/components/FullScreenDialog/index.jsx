@@ -28,6 +28,7 @@ export default function FullScreenDialog(props) {
         open={props.open}
         onClose={props.handleClose}
         TransitionComponent={Transition}
+        disableEnforceFocus
       >
         <CustomAppBar
           sx={{

@@ -35,10 +35,7 @@ https://stackoverflow.com/questions/68814908/can-you-pass-custom-props-to-materi
 ###### Example 2:
 
 ```js
-<AppBar
-  position='fixed'
-  sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
-></AppBar>
+<AppBar position='fixed' sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}></AppBar>
 ```
 
 ---
@@ -128,3 +125,10 @@ function App() {
 
 export default App
 ```
+
+---
+
+virtualization
+data grid column fields - unique
+Performance - use onblur more rather than onchange
+disableEnforceFocus - dialog on top of mui dialog

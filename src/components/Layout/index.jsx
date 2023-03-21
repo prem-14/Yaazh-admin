@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { styled, useTheme } from '@mui/material/styles'
 import { useMediaQuery } from '@mui/material'
 import Box from '@mui/material/Box'
@@ -77,7 +77,7 @@ const TemporaryDrawer = styled(Drawer)(({ theme, open }) => ({
 export default function Layout(props) {
   const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.down('tablet'))
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(matches ? false : true)
 
   return (
     <div>
@@ -96,11 +96,7 @@ export default function Layout(props) {
               </IconButton>
             </div>
             {props.children}
-            <TemporaryDrawer
-              anchor={'left'}
-              open={open}
-              onClose={() => setOpen(false)}
-            >
+            <TemporaryDrawer anchor={'left'} open={open} onClose={() => setOpen(false)}>
               <Box sx={{ width: `calc(100vw - 50px)` }}>
                 <div style={{ textAlign: 'end', padding: '0.5rem' }}>
                   <IconButton onClick={() => setOpen(false)}>
@@ -125,19 +121,10 @@ export default function Layout(props) {
               <DrawerHeader>
                 {open ? (
                   <IconButton onClick={() => setOpen(false)}>
-                    {theme.direction === 'rtl' ? (
-                      <ChevronRightIcon />
-                    ) : (
-                      <ChevronLeftIcon />
-                    )}
+                    {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
                   </IconButton>
                 ) : (
-                  <IconButton
-                    color='inherit'
-                    aria-label='open drawer'
-                    onClick={() => setOpen(true)}
-                    edge='start'
-                  >
+                  <IconButton color='inherit' aria-label='open drawer' onClick={() => setOpen(true)} edge='start'>
                     <MenuIcon />
                   </IconButton>
                 )}

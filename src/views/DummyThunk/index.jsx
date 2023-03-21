@@ -1,23 +1,28 @@
 import Layout from '@/components/Layout'
 import { useFormik } from 'formik'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import DataTable from '@/components/DataTable'
-import { products } from '@/assets/sampledata/data'
 import BlockIcon from '@mui/icons-material/Block'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import CustomDialog from '@/components/CustomDialog'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
 import PaidIcon from '@mui/icons-material/Paid'
-import DashboardManage from './DashboardManage'
+import DummyManage from './DummyManage'
 import { Button } from '@mui/material'
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined'
 import CircularProgress from '@mui/material/CircularProgress'
 import CustomSearch from '@/components/CustomSearch'
+import { getAllCustomers, changeCustomerStatus } from '@/store/thunk/dummy'
+import { useSelector } from 'react-redux'
+import { useThunk } from '@/hooks/useThunk'
 
-const Dashboard = () => {
+const Dummy = () => {
   const [actionStatus, setActionStatus] = useState(false)
-  const [actionLoading, setActionLoading] = useState(false)
+  const [fetchAllCustomers, isLoadingCustomers, isErrorProducts] = useThunk(getAllCustomers)
+  const [changeStatus, isLoadingStatus] = useThunk(changeCustomerStatus)
+  const { allCustomers } = useSelector((state) => state.dummy)
+  const dummyType = useSelector((state) => state.dummy.type)
 
   const [manage, setManage] = useState({
     popup: false,
@@ -25,28 +30,15 @@ const Dashboard = () => {
     id: 0,
   })
 
-  const toggleFullScreenPopup = (popup, status, id, data = {}) => {
-    if (popup) {
-      setManage({ popup, status, id, data })
-    } else {
-      setManage({ popup, status: 'new', id: 0 })
+  const toggleFullScreenPopup = (popup = false, status = 'new', data = {}, from) => {
+    if (from === 'customerAction') {
+      fetchAllCustomers(formik.values)
     }
+    setManage({ popup, status, data })
   }
 
-  console.count()
-
-  //   const debouncedValidate = useMemo(
-  //     () => debounce(formik.validateForm, 500),
-  //     [formik.validateForm],
-  // );
-
-  // useEffect(() => {
-  //     console.log('calling deboucedValidate');
-  //     debouncedValidate(formik.values);
-  // }, [formik.values]);
-
   const onClickSingle = (row, actionType) => {
-    toggleFullScreenPopup(true, 'edit', row.id, row)
+    toggleFullScreenPopup(true, 'edit', row)
   }
 
   const onClickMultiple = (row, actionType) => {
@@ -57,13 +49,17 @@ const Dashboard = () => {
   const formikInitialValues = {
     page: 1,
     limit: 20,
-    order: 'asc',
-    sort: '',
+    orderby: ['c.id asc'],
     filters: {
       name: {
         value: '',
         type: 'like',
-        field: 'name',
+        field: 'c.name',
+      },
+      email: {
+        value: '',
+        type: 'like',
+        field: 'c.email',
       },
     },
   }
@@ -72,24 +68,59 @@ const Dashboard = () => {
     initialValues: formikInitialValues,
     validateOnChange: false,
     onSubmit: (values) => {
-      // setIsLoading(true)
-      console.log(values)
+      fetchAllCustomers(values)
     },
   })
 
+  useEffect(() => {
+    const promise = fetchAllCustomers(formik.values)
+
+    return () => {
+      promise.abort()
+    }
+  }, [])
+
   const tableColumns = [
     {
-      field: 'images',
-      type: 'imagewithurl',
-      firstChild: true,
-      headerName: 'Image',
+      field: 'customers_id',
+      type: 'number',
+      headerName: 'ID',
     },
     {
-      field: 'name',
+      field: 'customers_email',
+      type: 'string',
+      headerName: 'Email',
+      width: 200,
+    },
+    {
+      field: 'customers_name',
       type: 'string',
       headerName: 'Name',
       width: 200,
-      flex: 1,
+    },
+    {
+      field: 'customers_address',
+      type: 'string',
+      headerName: 'Address',
+      width: 200,
+    },
+    {
+      field: 'customers_phone',
+      type: 'string',
+      headerName: 'Phone',
+      width: 200,
+    },
+    {
+      field: 'customers_updated_on',
+      type: 'date',
+      headerName: 'Updated On',
+      width: 200,
+    },
+    {
+      field: 'customers_status',
+      type: 'string',
+      headerName: 'Status',
+      width: 200,
     },
     {
       field: 'actions1',
@@ -99,12 +130,14 @@ const Dashboard = () => {
       headerName: 'Single Action',
       tooltipTitle: 'Edit',
       icon: <EditIcon color='secondary' />,
+      MaxWidth: 200,
     },
     {
       field: 'actions2',
       type: 'action',
       isMultiple: true,
       headerName: 'Multiple Action',
+      MaxWidth: 200,
       multiple: [
         {
           buttonType: 'visibility',
@@ -126,56 +159,44 @@ const Dashboard = () => {
 
   const searchInfo = [
     {
-      label: 'Product name',
-      placeholder: 'Enter product name',
+      label: 'Customer name',
+      placeholder: 'Enter Customer name',
       class: 'col-12 col-md-4 col-sm-6',
       type: 'text',
       name: 'name',
+      filter: true,
+      onBlurEvent: true,
+      onChangeEvent: false,
     },
     {
-      label: 'Product name',
-      placeholder: 'Enter product name',
+      label: 'Customer email',
+      placeholder: 'Enter Customer email address',
       class: 'col-12 col-md-4 col-sm-6',
       type: 'text',
-      name: 'name',
-    },
-    {
-      label: 'Product name',
-      placeholder: 'Enter product name',
-      class: 'col-12 col-md-4 col-sm-6',
-      type: 'text',
-      name: 'name',
-    },
-    {
-      label: 'Product name',
-      placeholder: 'Enter product name',
-      class: 'col-12 col-md-4 col-sm-6',
-      type: 'text',
-      name: 'name',
+      name: 'email',
+      filter: true,
+      onBlurEvent: true,
+      onChangeEvent: false,
     },
   ]
 
+  console.log(formik.values)
+
   const formikSelection = useFormik({
     initialValues: {
-      action: '',
-      id: '',
+      status: '',
+      id: [],
     },
     onSubmit: (values) => {
       console.log('formikSelection', values)
-      setActionLoading(true)
-      setTimeout(() => {
-        setActionStatus(false)
-        setActionLoading(false)
-      }, 2000)
-      // dispatch(changeBadgeStatus(values))
+      changeStatus(values)
     },
   })
 
   const onSelectMultiProducts = (data, action) => {
-    console.log(data, action)
-    formikSelection.setFieldValue('id', data)
-    formikSelection.setFieldValue('action', action)
     setActionStatus(true)
+    formikSelection.setFieldValue('id', data)
+    formikSelection.setFieldValue('status', action)
   }
 
   const tableActions = [
@@ -183,15 +204,23 @@ const Dashboard = () => {
       label: 'Move to not display',
       icon: <BlockIcon color='secondary' />,
       onclick: onSelectMultiProducts,
-      type: 'deactivate',
+      type: 'inactive',
     },
     {
       label: 'Move to display',
       icon: <CheckCircleIcon color='secondary' />,
       onclick: onSelectMultiProducts,
-      type: 'activate',
+      type: 'active',
     },
   ]
+
+  useEffect(() => {
+    console.log('dummy', dummyType)
+    if (dummyType === changeCustomerStatus.fulfilled().type) {
+      setActionStatus(false)
+      fetchAllCustomers(formik.values)
+    }
+  }, [dummyType])
 
   return (
     <Layout>
@@ -200,12 +229,30 @@ const Dashboard = () => {
       <Button variant='outlined' onClick={() => toggleFullScreenPopup(true, 'new', 0)}>
         <AddBoxOutlinedIcon /> <span className='ml-5'> Add New Badge </span>
       </Button>
-      <DataTable formik={formik} tableActions={tableActions} tableColumns={tableColumns} tableData={products} />
-      {manage.popup && <DashboardManage data={manage} function={toggleFullScreenPopup} />}
+
+      <DataTable
+        formik={formik}
+        tableActions={tableActions}
+        tableColumns={tableColumns}
+        tableData={allCustomers.records || []}
+        totalRecords={allCustomers.totalRecords || 0}
+        uniqueId={'customers_id'}
+        paginationChange={getAllCustomers}
+        isLoading={isLoadingCustomers}
+        // isSuccess={} // TODO: need to handle
+      />
+
+      {manage.popup && <DummyManage data={manage} function={toggleFullScreenPopup} />}
+
       <CustomDialog open={actionStatus} handleClose={() => setActionStatus(false)} title='Change badge status'>
         <p>Are you sure you want to change the status?</p>
         <div className='flex justify-end mt-10'>
-          <Button variant='contained' color='secondary' disabled={actionLoading} onClick={() => setActionStatus(false)}>
+          <Button
+            variant='contained'
+            color='secondary'
+            disabled={isLoadingStatus}
+            onClick={() => setActionStatus(false)}
+          >
             Cancel
           </Button>
           <form onSubmit={formikSelection.handleSubmit} autoComplete='nofill'>
@@ -213,10 +260,10 @@ const Dashboard = () => {
               variant='contained'
               color='primary'
               type='submit'
-              disabled={actionLoading}
+              disabled={isLoadingStatus}
               sx={{ marginLeft: '0.5rem' }}
             >
-              {actionLoading ? <CircularProgress color='inherit' size='2rem' /> : 'Confirm'}
+              {isLoadingStatus ? <CircularProgress color='inherit' size='2rem' /> : 'Confirm'}
             </Button>
           </form>
         </div>
@@ -225,4 +272,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default Dummy

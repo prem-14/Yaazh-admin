@@ -14,8 +14,6 @@ const DashboardManage = (props) => {
     colour: Yup.string().required('Required!'),
   })
 
-  console.count('manage')
-
   const formikInitialValues = {
     id: 0,
     name: '',
@@ -28,7 +26,6 @@ const DashboardManage = (props) => {
     validateOnChange: false,
     validationSchema: formikValidation,
     onSubmit: (values) => {
-      console.log(values)
       setTimeout(() => {
         toggleFullScreenDialog(false)
       }, 2000)
@@ -88,19 +85,10 @@ const DashboardManage = (props) => {
                   <div className='row'>{inputData(formik, badgeValues)}</div>
 
                   <div className='flex justify-center align-center mt-10'>
-                    <Button
-                      variant='contained'
-                      color='secondary'
-                      onClick={() => toggleFullScreenDialog(false)}
-                    >
+                    <Button variant='contained' color='secondary' onClick={() => toggleFullScreenDialog(false)}>
                       Cancel
                     </Button>
-                    <Button
-                      variant='contained'
-                      color='primary'
-                      type='submit'
-                      sx={{ marginLeft: '1rem' }}
-                    >
+                    <Button variant='contained' color='primary' type='submit' sx={{ marginLeft: '1rem' }}>
                       Submit
                     </Button>
                   </div>

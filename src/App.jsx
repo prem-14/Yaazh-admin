@@ -6,10 +6,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import Dashboard from './views/Dashboard'
 import AlerNotification from './components/AlertNotification'
-import Product from './views/Product'
+import DummyThunk from './views/DummyThunk'
+import DummyRTKQ from './views/DummyRTKQ'
+import { useSelector } from 'react-redux'
 
 function App() {
-  const [mode, setMode] = useState('dark')
+  const mode = useSelector((state) => state.global.mode)
   const theme = useMemo(() => createTheme(muiThemeSettings(mode)), [mode])
 
   return (
@@ -18,11 +20,9 @@ function App() {
       <AlerNotification />
       <BrowserRouter>
         <Routes>
-          <Route
-            path='products'
-            element={<Product mode={mode} setMode={setMode} />}
-          />
-          <Route path='*' element={<Dashboard />} />
+          {/* <Route path='*' element={<Dashboard />} /> */}
+          {/* <Route path='*' element={<DummyThunk />} />  */}
+          <Route path='*' element={<DummyRTKQ />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

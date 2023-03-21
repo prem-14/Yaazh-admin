@@ -113,8 +113,15 @@ export const muiThemeSettings = (mode) => {
       MuiTextField: {
         styleOverrides: {
           root: {
-            margin: '10px',
+            // margin: '10px',
             width: '100%',
+          },
+        },
+      },
+      MuiFormHelperText: {
+        styleOverrides: {
+          root: {
+            fontSize: '1.5rem', // set the desired font size
           },
         },
       },

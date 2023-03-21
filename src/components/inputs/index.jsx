@@ -65,53 +65,44 @@ const errorCheck = (data, formik) => {
 
 function inputData(formik, formikArray) {
   let data = formikArray.map((data, index) => (
-    <>
-      <div key={index} className={data.class}>
-        {['text', 'password', 'color', 'date', 'time', 'datetime'].includes(
-          data.type
-        ) ? (
-          <>
-            <CustomInput
-              id={data.id}
-              value={
-                data.filter
-                  ? formik.values.filters[data.name].value
-                  : checkArrayText(formik, data)
-              }
-              autoFocus={data.autoFocus}
-              name={data.filter ? `filters.${data.name}.value` : data.name}
-              disabled={data.disabled}
-              onBlur={formik.handleBlur}
-              onChange={data.onChange ? data.onChange : formik.handleChange}
-              label={data.label}
-              placeholder={data.placeholder}
-              type={data.type}
-              variant={data.variant}
-              color={data.color}
-              size={data.size}
-              startAdornment={data.startAdornment}
-              endAdornment={data.endAdornment}
-              min={data.min}
-              max={data.max}
-              error={errorCheck(data, formik)}
-              helperText={
-                helperText(data, formik)
-                  ? helperText(data, formik)
-                  : data.helperText
-              }
-              inputStyle={data.inputStyle}
-              upperLabel={data.upperLabel}
-              tooltiptitle={data.tooltiptitle}
-              readonly={data.readonly}
-            />
-          </>
-        ) : data.type === 'editor' ? (
-          <>
-            <CustomEditor formik={formik} data={data} />
-          </>
-        ) : null}
-      </div>
-    </>
+    <div key={index} className={data.class}>
+      {['text', 'password', 'color', 'date', 'time', 'datetime'].includes(data.type) ? (
+        <>
+          <CustomInput
+            id={data.id}
+            value={data.filter ? formik.values.filters[data.name].value : checkArrayText(formik, data)}
+            autoFocus={data.autoFocus}
+            name={data.filter ? `filters.${data.name}.value` : data.name}
+            disabled={data.disabled}
+            // onBlur={formik.handleBlur}
+            // onBlur={data.onBlurEvent ? formik.handleBlur : undefined}
+            onBlurEvent={data.onBlurEvent}
+            onChange={data.onChangeEvent === false ? undefined : data.onChange ? data.onChange : formik.handleChange}
+            label={data.label}
+            placeholder={data.placeholder}
+            type={data.type}
+            variant={data.variant}
+            color={data.color}
+            size={data.size}
+            startAdornment={data.startAdornment}
+            endAdornment={data.endAdornment}
+            min={data.min}
+            max={data.max}
+            error={errorCheck(data, formik)}
+            helperText={helperText(data, formik) ? helperText(data, formik) : data.helperText}
+            inputStyle={data.inputStyle}
+            upperLabel={data.upperLabel}
+            tooltiptitle={data.tooltiptitle}
+            readonly={data.readonly}
+            formik={formik}
+          />
+        </>
+      ) : data.type === 'editor' ? (
+        <>
+          <CustomEditor formik={formik} data={data} />
+        </>
+      ) : null}
+    </div>
   ))
 
   return data

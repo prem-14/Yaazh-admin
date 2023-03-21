@@ -8,6 +8,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import Slide from '@mui/material/Slide'
 import { CustomAppBar } from '../StyledComponents'
 import { styled } from '@mui/system'
+import { LinearProgress } from '@mui/material'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction='up' ref={ref} {...props} />
@@ -51,6 +52,7 @@ export default function FullScreenDialog(props) {
             </Typography>
           </Toolbar>
         </CustomAppBar>
+        {props.loading && <LinearProgress />}
         <div className='p-20'>{props.children}</div>
       </CustomDialog>
     </div>

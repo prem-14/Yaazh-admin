@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState, memo } from 'react'
 import { SIDE_PANEL } from '@/utils/UI'
 import Accordion from '@mui/material/Accordion'
 import AccordionDetails from '@mui/material/AccordionDetails'
@@ -51,14 +51,12 @@ const CustomListItem = styled(ListItem)(({ theme, active, sublink }) => ({
     }),
 }))
 
-const CustomAccordionSummary = styled(AccordionSummary)(
-  ({ theme, active }) => ({
-    ...(active === 'true' && {
-      backgroundColor: theme.palette.primary.hover,
-      color: theme.palette.primary.main,
-    }),
-  })
-)
+const CustomAccordionSummary = styled(AccordionSummary)(({ theme, active }) => ({
+  ...(active === 'true' && {
+    backgroundColor: theme.palette.primary.hover,
+    color: theme.palette.primary.main,
+  }),
+}))
 
 const CustomListItemText = styled(ListItemText)({
   '& .MuiTypography-root': {
@@ -66,7 +64,7 @@ const CustomListItemText = styled(ListItemText)({
   },
 })
 
-export default function Navlist() {
+function Navlist() {
   const location = useLocation()
   const [expanded, setExpanded] = useState(false)
   let navigate = useNavigate()
@@ -78,58 +76,43 @@ export default function Navlist() {
   return (
     <CustomList>
       {SIDE_PANEL.map((data, index) => (
-        <>
-          <>
-            {data.type === 'single' ? (
-              <CustomListItem
-                key={data.path + '_parent'}
-                onClick={() => navigate(data.path)}
-                active={location.pathname === data.path ? 'true' : 'false'}
+        <React.Fragment key={`${index}`}>
+          {data.type === 'single' ? (
+            <CustomListItem
+              onClick={() => navigate(data.path)}
+              active={location.pathname === data.path ? 'true' : 'false'}
+            >
+              <CustomListItemText primary={data.label} />
+            </CustomListItem>
+          ) : (
+            <CustomAccordian expanded={expanded === `${data.path}`} onChange={handleChange(`${data.path}`)}>
+              <CustomAccordionSummary
+                active={location.pathname.split('/')[1] === data.path ? 'true' : 'false'}
+                expandIcon={<ExpandMoreIcon />}
               >
-                <CustomListItemText primary={data.label} />
-              </CustomListItem>
-            ) : (
-              <CustomAccordian
-                expanded={expanded === `${data.path}`}
-                onChange={handleChange(`${data.path}`)}
-                key={data.path + '_parent'}
-              >
-                <CustomAccordionSummary
-                  active={
-                    location.pathname.split('/')[1] === data.path
-                      ? 'true'
-                      : 'false'
-                  }
-                  expandIcon={<ExpandMoreIcon />}
-                  aria-controls={`panel${index}bh-content`}
-                  id={`panel${index}bh-header`}
-                >
-                  {data.label}
-                </CustomAccordionSummary>
+                {data.label}
+              </CustomAccordionSummary>
 
-                <AccordionDetails>
-                  <div className='subLinks'>
-                    {data.subLinks.map((d, i) => (
-                      <>
-                        <CustomListItem
-                          key={d.path + '_child'}
-                          onClick={() => navigate(d.path)}
-                          active={
-                            location.pathname === d.path ? 'true' : 'false'
-                          }
-                          sublink={'true'}
-                        >
-                          <CustomListItemText primary={d.label} />
-                        </CustomListItem>
-                      </>
-                    ))}
-                  </div>
-                </AccordionDetails>
-              </CustomAccordian>
-            )}
-          </>
-        </>
+              <AccordionDetails>
+                <div className='subLinks'>
+                  {data.subLinks.map((d, i) => (
+                    <CustomListItem
+                      key={d.path}
+                      onClick={() => navigate(d.path)}
+                      active={location.pathname === d.path ? 'true' : 'false'}
+                      sublink={'true'}
+                    >
+                      <CustomListItemText primary={d.label} />
+                    </CustomListItem>
+                  ))}
+                </div>
+              </AccordionDetails>
+            </CustomAccordian>
+          )}
+        </React.Fragment>
       ))}
     </CustomList>
   )
 }
+
+export default memo(Navlist)

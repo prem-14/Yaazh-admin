@@ -26,14 +26,10 @@ export default function CustomColumns(tableValues) {
             <>
               {data.isMultiple ? (
                 <>
-                  {data.multiple.map((dt) => {
+                  {data.multiple.map((dt, i) => {
                     return (
-                      <Tooltip title={dt.tooltipTitle}>
-                        <IconButton
-                          onClick={() => dt.onclick(obj.row, dt.clickType)}
-                        >
-                          {dt.icon}
-                        </IconButton>
+                      <Tooltip title={dt.tooltipTitle} key={i}>
+                        <IconButton onClick={() => dt.onclick(obj.row, dt.clickType)}>{dt.icon}</IconButton>
                       </Tooltip>
                     )
                   })}
@@ -41,11 +37,7 @@ export default function CustomColumns(tableValues) {
               ) : (
                 <>
                   <Tooltip title={data.tooltipTitle}>
-                    <IconButton
-                      onClick={() => data.onclick(obj.row, data.clickType)}
-                    >
-                      {data.icon}
-                    </IconButton>
+                    <IconButton onClick={() => data.onclick(obj.row, data.clickType)}>{data.icon}</IconButton>
                   </Tooltip>
                 </>
               )}

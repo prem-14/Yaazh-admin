@@ -2,14 +2,20 @@ import React from 'react'
 import TextField from '@mui/material/TextField'
 
 function CustomInput(props) {
+  const handleBlur = (e) => {
+    if (props.onBlurEvent) {
+      props.formik.setFieldValue(props.name, e.target.value)
+    }
+    props.formik.handleBlur(e)
+  }
   return (
     <div className='customInput'>
       <TextField
-        value={props.value}
+        // value={props.value}
         autoFocus={props.autoFocus}
         name={props.name}
         onChange={props.onChange}
-        onBlur={props.onBlur}
+        onBlur={handleBlur}
         InputProps={{
           startAdornment: props.startAdornment,
           endAdornment: props.endAdornment,
@@ -29,6 +35,8 @@ function CustomInput(props) {
         error={props.error}
         helperText={props.helperText}
         color={props.color || 'primary'}
+        {...(!props.onBlurEvent && { value: props.value })}
+        // {...(props.onBlurEvent && { onBlur: handleBlur })}
       />
     </div>
   )

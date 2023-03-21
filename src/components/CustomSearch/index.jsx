@@ -14,12 +14,12 @@ const CustomSearch = (props) => {
     <form onSubmit={handleSubmit} className='mb-20'>
       <div className='row'>
         {inputData(formik, searchInfo)}
-        <div className='text-end'>
+        <div className='text-end col-4'>
           <Button
             color='primary'
             variant='contained'
             type='submit'
-            sx={{ marginTop: '2rem' }}
+            sx={{ marginTop: '1rem' }}
           >
             Search
           </Button>

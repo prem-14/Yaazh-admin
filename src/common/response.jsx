@@ -4,10 +4,10 @@ const getAlertMessage = (data) => {
   const notification = {}
   if (data?.status) {
     if (data.status === 'success') {
-      notification['message'] = data.message || 'Success'
+      notification['message'] = data.data.message || 'Success'
       notification['type'] = 'success'
     } else if (data.status === 'error' || data.status === 'fail') {
-      notification['message'] = data.message || 'Error'
+      notification['message'] = data.data.message || 'Error'
       notification['type'] = 'error'
     }
   }
@@ -19,7 +19,7 @@ const commonErrorResponse = (dispatch, err, alert = 1) => {
     dispatch(
       alertActions.showAlertNotification({
         open: true,
-        message: 'Something went wrong',
+        message: err?.data?.data?.message || 'Something went wrong',
         type: 'error',
       })
     )
@@ -34,13 +34,11 @@ const commonResponse = (dispatch, data, alert = 1) => {
       dispatch(
         alertActions.showAlertNotification({
           open: true,
-          message: data.message || 'Success',
-          type: 'success',
+          message: message,
+          type: type,
         })
       )
     }
-  } else {
-    commonErrorResponse()
   }
 }
 
@@ -48,7 +46,7 @@ const apiStatusResponse = (dispatch, res, alert = 1) => {
   if (res?.data?.status) {
     commonResponse(dispatch, res.data, alert)
   } else {
-    commonErrorResponse(dispatch, alert)
+    commonErrorResponse(dispatch, res, alert)
   }
 }
 

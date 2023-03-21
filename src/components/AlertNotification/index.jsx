@@ -38,7 +38,7 @@ const AlerNotification = () => {
       {alertNotification?.open ? (
         <CustomSnackbar
           open={true}
-          autoHideDuration={5000}
+          autoHideDuration={2500}
           TransitionComponent={SlideTransition}
           onClose={handleClose}
           anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}

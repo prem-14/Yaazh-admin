@@ -24,4 +24,6 @@ dist-ssr
 *.sw?
 
 .env.local
-Markdowns
+markdown
+# Local Netlify folder
+.netlify

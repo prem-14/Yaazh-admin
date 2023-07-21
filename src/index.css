@@ -32,6 +32,10 @@ html {
   text-align: end;
 }
 
+.d-none {
+  display: none;
+}
+
 .flex {
   display: flex;
 }
@@ -50,6 +54,10 @@ html {
 
 .align-center {
   align-items: center;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
 }
 
 .p-10 {
@@ -90,6 +98,10 @@ html {
 
 .ml-auto {
   margin-left: auto;
+}
+
+.pointer {
+  cursor: pointer;
 }
 
 /******** Scrollbar *************/

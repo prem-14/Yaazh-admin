@@ -39,15 +39,10 @@ export default function FullScreenDialog(props) {
           }}
         >
           <Toolbar>
-            <IconButton
-              edge='start'
-              color='inherit'
-              onClick={props.handleClose}
-              aria-label='close'
-            >
+            <IconButton edge='start' color='inherit' onClick={props.handleClose} aria-label='close'>
               <CloseIcon />
             </IconButton>
-            <Typography sx={{ ml: 2, flex: 1 }} variant='h6' component='div'>
+            <Typography sx={{ ml: 2, flex: 1 }} variant='h5' component='div'>
               {props.modaltitle}
             </Typography>
           </Toolbar>

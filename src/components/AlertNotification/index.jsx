@@ -43,11 +43,7 @@ const AlerNotification = () => {
           onClose={handleClose}
           anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         >
-          <Alert
-            onClose={handleClose}
-            severity={alertNotification.type}
-            sx={{ width: '100%' }}
-          >
+          <Alert onClose={handleClose} severity={alertNotification.type} sx={{ width: '100%' }}>
             <AlertTitle>{alertNotification.type}</AlertTitle>
             {alertNotification.message}
           </Alert>

@@ -127,7 +127,7 @@ const Dummy = () => {
       type: 'action',
       clickType: 'edit',
       onclick: onClickSingle,
-      headerName: 'Single Action',
+      headerName: 'Action',
       tooltipTitle: 'Edit',
       icon: <EditIcon color='secondary' />,
       MaxWidth: 200,

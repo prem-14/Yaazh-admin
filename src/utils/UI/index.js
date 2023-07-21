@@ -1,15 +1,6 @@
-export const LOGO = '/assets/images/yaazhLogo.jpg'
-
-export const BRAND_LOGO = '/assets/images/yaazhLogo.jpg'
-
 export const SITE_NAME = 'Yaazh admin'
 
 export const SIDE_PANEL = [
-  {
-    label: 'Dashboard',
-    path: '/dashboard',
-    type: 'single',
-  },
   {
     label: 'Products',
     path: '/products',
@@ -21,17 +12,91 @@ export const SIDE_PANEL = [
     type: 'single',
   },
   {
+    label: 'Templates',
+    path: 'templates',
+    type: 'multiple',
+    subLinks: [
+      {
+        label: 'Email',
+        path: '/templates/email',
+      },
+      // {
+      //     label: 'SMS',
+      //     path: '/communications/sms',
+      // },
+    ],
+  },
+  {
+    label: 'Admins',
+    path: '/admins',
+    type: 'single',
+  },
+  {
+    label: 'Coupons',
+    path: '/coupons',
+    type: 'single',
+  },
+  {
+    label: 'Ingredients',
+    path: '/ingredients',
+    type: 'single',
+  },
+  {
+    label: 'Badges',
+    path: '/badges',
+    type: 'single',
+  },
+  {
+    label: 'Faqs',
+    path: '/faqs',
+    type: 'single',
+  },
+  {
+    label: 'Blogs',
+    path: '/blogs',
+    type: 'single',
+  },
+  {
+    label: 'Settings',
+    path: 'settings',
+    type: 'multiple',
+    subLinks: [
+      {
+        label: 'Banners',
+        path: '/settings/banners',
+      },
+      {
+        label: 'Static pages',
+        path: '/settings/static_pages',
+      },
+      {
+        label: 'General setting',
+        path: '/settings/general_settings',
+      },
+    ],
+  },
+  {
+    label: 'Discounts',
+    path: '/discounts',
+    type: 'single',
+  },
+  {
+    label: 'Dashboard',
+    path: '/dashboard',
+    type: 'single',
+  },
+  {
     label: 'Reviews',
     path: '/reviews',
     type: 'single',
   },
   {
-    label: 'User',
+    label: 'Users',
     path: 'users',
     type: 'multiple',
     subLinks: [
       {
-        label: 'All ',
+        label: 'All',
         path: '/users/all',
       },
       {
@@ -48,76 +113,34 @@ export const SIDE_PANEL = [
       },
     ],
   },
-  {
-    label: 'Templates',
-    path: 'template',
-    type: 'multiple',
-    subLinks: [
-      {
-        label: 'Email Template',
-        path: '/template/email',
-      },
-      // {
-      //     label: 'SMS Template',
-      //     path: '/communications/sms',
-      // },
-    ],
-  },
-  {
-    label: 'Employees',
-    path: '/employees',
-    type: 'single',
-  },
+
   {
     label: 'Transactions',
-    path: 'transaction',
+    path: 'transactions',
     type: 'multiple',
     subLinks: [
       {
         label: 'Payment',
-        path: '/transaction/payment',
+        path: '/transactions/payment',
       },
       {
         label: 'Refund',
-        path: '/transaction/refund',
+        path: '/transactions/refund',
       },
     ],
   },
   {
-    label: 'Invoice',
-    path: 'invoice',
+    label: 'Invoices',
+    path: 'invoices',
     type: 'multiple',
     subLinks: [
       {
         label: 'Unpaid',
-        path: '/invoice/unpaid',
+        path: '/invoices/unpaid',
       },
       {
         label: 'Paid',
-        path: '/invoice/paid',
-      },
-    ],
-  },
-  {
-    label: 'Product Info',
-    type: 'multiple',
-    path: 'productInfo',
-    subLinks: [
-      {
-        label: 'Coupons',
-        path: '/productInfo/coupons',
-      },
-      {
-        label: 'Ingredients',
-        path: '/productInfo/ingredients',
-      },
-      {
-        label: 'Badges',
-        path: '/productInfo/badges',
-      },
-      {
-        label: 'Faqs',
-        path: '/productInfo/faqs',
+        path: '/invoices/paid',
       },
     ],
   },
@@ -125,5 +148,6 @@ export const SIDE_PANEL = [
     label: 'Change Password',
     path: '/changePassword',
     type: 'single',
+    exemptedRoute: true,
   },
 ]

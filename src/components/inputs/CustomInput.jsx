@@ -1,5 +1,6 @@
 import React from 'react'
 import TextField from '@mui/material/TextField'
+import './index.css'
 
 function CustomInput(props) {
   const handleBlur = (e) => {
@@ -9,9 +10,11 @@ function CustomInput(props) {
     props.formik.handleBlur(e)
   }
   return (
-    <div className='customInput'>
+    <div>
       <TextField
         // value={props.value}
+        rows={props.rows || 3}
+        multiline={props.multiline}
         autoFocus={props.autoFocus}
         name={props.name}
         onChange={props.onChange}
@@ -32,10 +35,11 @@ function CustomInput(props) {
         disabled={props.disabled}
         variant={props.variant || 'outlined'}
         placeholder={props.placeholder}
-        error={props.error}
+        error={props.error ? true : false}
         helperText={props.helperText}
         color={props.color || 'primary'}
-        {...(!props.onBlurEvent && { value: props.value })}
+        {...(props.type === 'textarea' && { row: props.row || 3 })}
+        {...(!props.onBlurEvent && { value: props.value ?? '' })}
         // {...(props.onBlurEvent && { onBlur: handleBlur })}
       />
     </div>

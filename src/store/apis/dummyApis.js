@@ -4,7 +4,7 @@ import { apiStatusResponse, commonErrorResponse } from '@/common/response'
 const dummysApi = createApi({
   reducerPath: 'dummys',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:5000/api/v1/admin/dummy',
+    baseUrl: `${import.meta.env.VITE_BACKEND_URL}/api/v1/admin/dummy`,
   }),
   endpoints(builder) {
     return {

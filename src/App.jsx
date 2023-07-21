@@ -1,30 +1,30 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo } from 'react'
 import { muiThemeSettings } from './theme'
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import { createTheme } from '@mui/material/styles'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-
-import Dashboard from './views/Dashboard'
 import AlerNotification from './components/AlertNotification'
-import DummyThunk from './views/DummyThunk'
-import DummyRTKQ from './views/DummyRTKQ'
 import { useSelector } from 'react-redux'
+import Router from '@/routes'
+import { useLoadAdminQuery } from './store/apis/authApis'
+import '@/socket'
+import { useAllValuesQuery } from './store/apis/commonApis'
+import LeafLoader from './components/LeafLoader'
 
 function App() {
   const mode = useSelector((state) => state.global.mode)
   const theme = useMemo(() => createTheme(muiThemeSettings(mode)), [mode])
+  const { data, error, isFetching } = useLoadAdminQuery()
+  useAllValuesQuery()
+
+  if (isFetching) {
+    return <LeafLoader />
+  }
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <AlerNotification />
-      <BrowserRouter>
-        <Routes>
-          {/* <Route path='*' element={<Dashboard />} /> */}
-          {/* <Route path='*' element={<DummyThunk />} />  */}
-          <Route path='*' element={<DummyRTKQ />} />
-        </Routes>
-      </BrowserRouter>
+      <Router />
     </ThemeProvider>
   )
 }

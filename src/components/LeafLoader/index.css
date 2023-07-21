@@ -1,0 +1,21 @@
+.leaf-loader {
+  width: 100px;
+  animation: spin 4s linear infinite;
+}
+
+.loader-wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--backgroundDefault);
+  color: var(--primaryMain);
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}

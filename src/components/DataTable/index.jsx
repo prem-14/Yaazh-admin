@@ -23,6 +23,10 @@ const CustomDataGrid = styled(DataGrid)(({ theme }) => ({
   '& .MuiDataGrid-cell:focus': {
     outline: 'none',
   },
+  '& .MuiDataGrid-booleanCell': {
+    height: '2em',
+    width: '2em',
+  },
 }))
 
 const DataGridWrapper = styled(Box)(({ theme }) => ({
@@ -81,7 +85,7 @@ const DataTable = (props) => {
               columns={CustomColumns(tableColumns)}
               autoHeight={tableData.length > 5 ? false : true}
               rowHeight={tableColumns.find((d) => d.type === 'imagewithurl') ? 70 : 50}
-              checkboxSelection
+              checkboxSelection={tableActions?.length > 0}
               components={{
                 Toolbar: () => <CustomToolbar selected={selected} tableActions={tableActions} />,
               }}
